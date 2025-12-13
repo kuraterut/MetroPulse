@@ -1,0 +1,41 @@
+FROM apache/spark:3.5.7
+
+USER root
+RUN apt-get update && \
+    apt-get install -y python3-pip && \
+    apt-get clean
+
+RUN pip3 install --no-cache-dir \
+    pandas \
+    numpy \
+    minio \
+    psycopg2-binary \
+    sqlalchemy \
+    python-dotenv \
+    faker \
+    boto3 \
+    s3fs
+
+
+# Устанавливаем тяжелые без зависимостей
+RUN pip3 install --no-deps --no-cache-dir \
+    pyarrow \
+    fastparquet \
+    apache-airflow
+
+# delta-spark требует pyspark, но он уже есть в образе
+# Устанавливаем с игнорированием зависимостей
+RUN pip3 install --no-deps --no-cache-dir delta-spark
+RUN mkdir -p /opt/spark/jars && \
+    curl -L https://jdbc.postgresql.org/download/postgresql-42.6.0.jar -o /opt/spark/jars/postgresql-42.6.0.jar
+
+
+# Копируем приложение
+COPY . /opt/spark-apps
+WORKDIR /opt/spark-apps
+
+# Создаем пользователя spark
+ RUN groupadd -r spark && useradd -r -g spark spark && \
+    chown -R spark:spark /opt/spark-apps
+
+USER spark
