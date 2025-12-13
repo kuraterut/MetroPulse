@@ -7,7 +7,7 @@ echo "Поднимаем Docker-контейнеры..."
 docker-compose up -d
 
 echo "надо подождать, airflow долго поднимается"
-sleep 120
+sleep 200
 
 echo "Инициализируем Airflow..."
 chmod +x airflow/init_airflow.sh
