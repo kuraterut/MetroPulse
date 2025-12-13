@@ -1,6 +1,12 @@
 ETL-пайплайн для сбора, обработки и анализа данных. Система имитирует работу общественного транспорта с генерацией тестовых данных, их обработкой в хранилище 
 данных и визуализацией через Apache Superset.
 
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
+
 ### Архитектура проекта
 
 ```
@@ -86,5 +92,3 @@ docker exec -it airflow-webserver airflow dags trigger metro_pulse_etl
 # Просмотр статуса задач
 docker exec -it airflow-webserver airflow tasks list metro_pulse_etl
 ```
-
-![img.png](img.png)

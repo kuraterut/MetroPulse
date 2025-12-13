@@ -1,7 +1,7 @@
 #!/bin/bash
 echo " Инициализация Airflow..."
 
-sleep 30
+sleep 20
 
 # Инициализируем Airflow базу данных
 echo " Инициализируем базу данных Airflow..."
@@ -19,8 +19,8 @@ docker exec airflow-webserver airflow users create \
 
 # Устанавливаем connections
 echo " Настраиваем connections..."
-docker cp airflow/init_connections.py airflow-webserver:/tmp/init_connections.py
-docker exec airflow-webserver python /tmp/init_connections.py
+docker cp init_connections.py airflow-webserver:/tmp/init_connections.py
+docker exec airflow-webserver python3 /tmp/init_connections.py
 
 echo " Airflow инициализирован!"
 echo ""
