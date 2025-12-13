@@ -94,6 +94,9 @@ fi
 echo "Настраиваем DAG..."
 sleep 10
 
+echo "Очищаем предыдущие запуски DAG..."
+#docker exec airflow-webserver airflow dags delete metropulse_etl_pipeline --yes 2>/dev/null || echo "DAG не найден или не может быть удален"
+
 docker exec -i airflow-webserver airflow dags list | grep metropulse_etl_pipeline && {
     echo "DAG найден, включаем..."
     docker exec -i airflow-webserver airflow dags unpause metropulse_etl_pipeline
