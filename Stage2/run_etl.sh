@@ -69,28 +69,6 @@ docker-compose up -d postgres-oltp postgres-dwh minio spark
 
 sleep 15
 
-echo "Генерируем тестовые данные..."
-
-if docker-compose ps | grep -q "spark.*Up"; then
-    echo "Проверяем доступность Spark..."
-
-    if docker exec -i spark ls /opt/spark/jobs/generate_data.py 2>/dev/null; then
-        echo "Запускаем генерацию данных..."
-
-        if docker exec -i spark which python3 2>/dev/null; then
-            docker exec -i spark python3 /opt/spark/jobs/generate_data.py || echo "Ошибка генерации данных с python3"
-        elif docker exec -i spark which python 2>/dev/null; then
-            docker exec -i spark python /opt/spark/jobs/generate_data.py || echo "Ошибка генерации данных с python"
-        else
-            echo "Python не найден в Spark контейнере"
-        fi
-    else
-        echo "Файл generate_data.py не найден в Spark контейнере"
-    fi
-else
-    echo "Spark не запущен"
-fi
-
 echo "Настраиваем DAG..."
 sleep 10
 

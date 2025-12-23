@@ -33,9 +33,3 @@ RUN mkdir -p /opt/spark/jars && \
 # Копируем приложение
 COPY . /opt/spark-apps
 WORKDIR /opt/spark-apps
-
-# Создаем пользователя spark
- RUN groupadd -r spark && useradd -r -g spark spark && \
-    chown -R spark:spark /opt/spark-apps
-
-USER spark

@@ -1,4 +1,4 @@
-from airflow.models import Connection
+from airflow.models.connection import Connection
 from airflow import settings
 from airflow.utils.db import create_session
 import json
