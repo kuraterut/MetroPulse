@@ -3,13 +3,13 @@
 ETL-пайплайн для сбора, обработки и анализа данных. Система имитирует работу общественного транспорта с генерацией тестовых данных, их обработкой в хранилище 
 данных и визуализацией через Apache Superset.
 
-![Stages/img.png](img.png)
+![Stages_2&3/img.png](img.png)
 
-![Stages/img_1.png](img_1.png)
+![Stages_2&3/img_1.png](img_1.png)
 
-![Stages/img_2.png](img_2.png)
+![Stages_2&3/img_2.png](img_2.png)
 
-![Stages/img_4.png](img_4.png)
+![Stages_2&3/img_4.png](img_4.png)
 
 ### Архитектура проекта
 
